@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BredVoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <div id="app-container">
+        <header>
+            <div class="tab-switcher">
+                <button id="voice-tab-btn" class="tab-btn active">Sprache</button>
+                <button id="todo-tab-btn" class="tab-btn">Aufgaben</button>
+                <div class="tab-indicator"></div>
+            </div>
+            <div class="settings-trigger">
+                <button id="settings-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Sprachmodus -->
+            <section id="voice-mode" class="view active">
+                <div class="voice-container">
+                    <div id="voice-visualizer">
+                        <div class="orb"></div>
+                        <div class="orb"></div>
+                        <div class="orb"></div>
+                    </div>
+                    <div id="response-box">
+                        <p class="placeholder">Klicke zum sprechen</p>
+                        <div id="response-content"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Organisations-Tab (ToDo-Manager) -->
+            <section id="todo-mode" class="view">
+                <div class="todo-container">
+                    <ul id="task-list"></ul>
+                    <form id="add-task-form">
+                        <input type="text" id="task-input" placeholder="Neue Aufgabe hinzufügen..." autocomplete="off">
+                        <button type="submit">+</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Einstellungs-Overlay -->
+    <div id="settings-overlay" class="view">
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2>Einstellungen</h2>
+                <button id="close-settings-btn">&times;</button>
+            </div>
+            <div class="settings-content">
+                <fieldset class="settings-group">
+                    <legend>API Schlüssel (Rotation)</legend>
+                    <div class="form-group api-keys-container">
+                        <label for="api-key-1">API Key 1</label>
+                        <input type="password" id="api-key-1" class="api-key-input" placeholder="Schlüssel 1">
+                        <label for="api-key-2">API Key 2</label>
+                        <input type="password" id="api-key-2" class="api-key-input" placeholder="Schlüssel 2 (optional)">
+                        <label for="api-key-3">API Key 3</label>
+                        <input type="password" id="api-key-3" class="api-key-input" placeholder="Schlüssel 3 (optional)">
+                        <label for="api-key-4">API Key 4</label>
+                        <input type="password" id="api-key-4" class="api-key-input" placeholder="Schlüssel 4 (optional)">
+                        <label for="api-key-5">API Key 5</label>
+                        <input type="password" id="api-key-5" class="api-key-input" placeholder="Schlüssel 5 (optional)">
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="personalization-prompt">Personalisierungsprompt</label>
+                    <textarea id="personalization-prompt" rows="4" placeholder="z.B. Antworte immer kurz und prägnant. Du bist ein Experte für Produktivität."></textarea>
+                </div>
+
+                <fieldset class="settings-group">
+                    <legend>Text-to-Speech</legend>
+                    <div class="form-group tts-options">
+                        <label for="tts-enabled">Sprachausgabe aktivieren</label>
+                        <label class="switch">
+                            <input type="checkbox" id="tts-enabled">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                     <div class="form-group">
+                        <label for="tts-voice">Stimme auswählen</label>
+                        <select id="tts-voice" disabled>
+                            <option>Stimmen werden geladen...</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <button id="save-settings-btn">Speichern</button>
+                <div id="save-confirmation" class="save-confirmation">Einstellungen gespeichert!</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
